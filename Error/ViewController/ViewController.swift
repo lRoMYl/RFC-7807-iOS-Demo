@@ -29,7 +29,7 @@ class ViewController: UIViewController {
             self.present(error: error, presenter: self)
         }
         let action4 = UIAlertAction(title: "Multiline alert", style: .default) { (_) in
-            let error = ApiErrorMeta.mockAlert()
+            let error = ApiErrorMeta.mockMultilineAlert()
             self.present(error: error, presenter: self)
         }
         let action5 = UIAlertAction(title: "Custom Error View", style: .default) { (_) in

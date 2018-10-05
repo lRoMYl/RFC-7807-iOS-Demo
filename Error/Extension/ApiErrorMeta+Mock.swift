@@ -4,7 +4,7 @@
 import Foundation
 
 extension ApiErrorMeta {
-    static func mockAlert() -> ApiErrorMeta {
+    static func mockMultilineAlert() -> ApiErrorMeta {
         let actionOk = ApiErrorMetaAction(
             title: "Ok", url: nil)
         let actionUrl = ApiErrorMetaAction(
@@ -49,7 +49,7 @@ extension ApiErrorMeta {
             code: 1001,
             traceId: "somelongid",
             title: "Opps...",
-            message: "The server is currently undergoing maintenance. Our engineers will are working around the clock to fix it A.S.A.P",
+            message: "Please update the app for more awesome features :)",
             style: .alert,
             actions: [actionOk, actionUrl])
         return mockError
@@ -64,7 +64,7 @@ extension ApiErrorMeta {
             code: 1001,
             traceId: "somelongid",
             title: "Opps...",
-            message: "The server is currently undergoing maintenance. Our engineers will are working around the clock to fix it A.S.A.P",
+            message: "This version is outdated, please update the app",
             style: .alert,
             actions: [actionUpdate])
         return mockError
@@ -74,14 +74,14 @@ extension ApiErrorMeta {
         let actionOk = ApiErrorMetaAction(
             title: "Ok", url: nil)
         let actionUrl = ApiErrorMetaAction(
-            title: "Let me google for you...",
+            title: "Learn more",
             url: URL(string: "http://lmgtfy.com/?q=404"))
         
         let mockError = ApiErrorMeta(
             code: 1001,
             traceId: "somelongid",
             title: "Opps...",
-            message: "The server is currently undergoing maintenance. Our engineers will are working around the clock to fix it A.S.A.P",
+            message: "Your access level is not high enough to access this page",
             style: .alert,
             actions: [actionOk, actionUrl])
         return mockError
