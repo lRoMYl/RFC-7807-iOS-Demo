@@ -4,7 +4,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    private struct ErrorWrapper {
+        let title: String
+        let meta: ApiErrorMeta
+    }
+    
+    private let errors: [ErrorWrapper] = [
+        ErrorWrapper(title: "Soft Update Alert", meta: ApiErrorMeta.mockSoftUpdate()),
+        ErrorWrapper(title: "Force Update Alert", meta: ApiErrorMeta.mockHardUpdate()),
+        ErrorWrapper(title: "Learn more? Alert", meta: ApiErrorMeta.mockLearnMore()),
+        ErrorWrapper(title: "Multiline Alert", meta: ApiErrorMeta.mockMultilineAlert()),
+        ErrorWrapper(title: "Empty Actions Alert", meta: ApiErrorMeta.mockEmptyActionAlert()),
+        ErrorWrapper(title: "Custom Error View", meta: ApiErrorMeta.mockCustom()),
+        ErrorWrapper(title: "Error Overlay", meta: ApiErrorMeta.mockOverlay())
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -16,36 +31,13 @@ class ViewController: UIViewController {
     
     private func displayActionSheet() {
         let sheet = UIAlertController.init(title: "Actions", message: "Choose your poison", preferredStyle: .actionSheet)
-        let action1 = UIAlertAction(title: "Soft Update Alert", style: .default) { (_) in
-            let error = ApiErrorMeta.mockSoftUpdate()
-            self.present(error: error, presenter: self)
+        errors.forEach { (error) in
+            let action = UIAlertAction(title: error.title, style: .default, handler: { [weak self] (_) in
+                guard let strongSelf = self else { return }
+                strongSelf.present(error: error.meta, presenter: strongSelf)
+            })
+            sheet.addAction(action)
         }
-        let action2 = UIAlertAction(title: "Force Update Alert", style: .default) { (_) in
-            let error = ApiErrorMeta.mockHardUpdate()
-            self.present(error: error, presenter: self)
-        }
-        let action3 = UIAlertAction(title: "Learn more? Alert", style: .default) { (_) in
-            let error = ApiErrorMeta.mockLearnMore()
-            self.present(error: error, presenter: self)
-        }
-        let action4 = UIAlertAction(title: "Multiline alert", style: .default) { (_) in
-            let error = ApiErrorMeta.mockMultilineAlert()
-            self.present(error: error, presenter: self)
-        }
-        let action5 = UIAlertAction(title: "Custom Error View", style: .default) { (_) in
-            let error = ApiErrorMeta.mockCustom()
-            self.present(error: error, presenter: self)
-        }
-        let action6 = UIAlertAction(title: "Error Overlay", style: .default) { (_) in
-            let error = ApiErrorMeta.mockOverlay()
-            self.present(error: error, presenter: self)
-        }
-        sheet.addAction(action1)
-        sheet.addAction(action2)
-        sheet.addAction(action3)
-        sheet.addAction(action4)
-        sheet.addAction(action5)
-        sheet.addAction(action6)
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(sheet, animated: true, completion: nil)
     }

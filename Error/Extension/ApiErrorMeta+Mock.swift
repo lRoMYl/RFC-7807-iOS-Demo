@@ -4,40 +4,6 @@
 import Foundation
 
 extension ApiErrorMeta {
-    static func mockMultilineAlert() -> ApiErrorMeta {
-        let actionOk = ApiErrorMetaAction(
-            title: "Ok", url: nil)
-        let actionUrl = ApiErrorMetaAction(
-            title: "Let me google for you...",
-            url: URL(string: "http://lmgtfy.com/?q=404"))
-        
-        let mockError = ApiErrorMeta(
-            code: 1001,
-            traceId: "somelongid",
-            title: "Opps...",
-            message: "The server is currently undergoing maintenance. Our engineers will are working around the clock to fix it A.S.A.P",
-            style: .alert,
-            actions: [actionOk, actionUrl])
-        return mockError
-    }
-    
-    static func mockCustom() -> ApiErrorMeta {
-        let actionOk = ApiErrorMetaAction(
-            title: "Ok", url: nil)
-        let actionUrl = ApiErrorMetaAction(
-            title: "Let me google for you...",
-            url: URL(string: "http://lmgtfy.com/?q=404"))
-        
-        let mockError = ApiErrorMeta(
-            code: 1001,
-            traceId: "somelongid",
-            title: "Opps...",
-            message: "The server is currently undergoing maintenance. Our engineers will are working around the clock to fix it A.S.A.P",
-            style: .custom,
-            actions: [actionOk, actionUrl])
-        return mockError
-    }
-    
     static func mockSoftUpdate() -> ApiErrorMeta {
         let actionOk = ApiErrorMetaAction(
             title: "Ok", url: nil)
@@ -83,6 +49,50 @@ extension ApiErrorMeta {
             title: "Opps...",
             message: "Your access level is not high enough to access this page",
             style: .alert,
+            actions: [actionOk, actionUrl])
+        return mockError
+    }
+    
+    static func mockMultilineAlert() -> ApiErrorMeta {
+        let actionOk = ApiErrorMetaAction(
+            title: "Ok", url: nil)
+        let actionUrl = ApiErrorMetaAction(
+            title: "Let me google for you...",
+            url: URL(string: "http://lmgtfy.com/?q=404"))
+        
+        let mockError = ApiErrorMeta(
+            code: 1001,
+            traceId: "somelongid",
+            title: "Opps...",
+            message: "The server is currently undergoing maintenance. Our engineers will are working around the clock to fix it A.S.A.P",
+            style: .alert,
+            actions: [actionOk, actionUrl])
+        return mockError
+    }
+    
+    static func mockEmptyActionAlert() -> ApiErrorMeta {
+        let mockError = ApiErrorMeta(
+            code: 1001,
+            traceId: "somelongid",
+            title: "Opps...",
+            message: "Something went wrong...", style: .alert,
+            actions: [])
+        return mockError
+    }
+    
+    static func mockCustom() -> ApiErrorMeta {
+        let actionOk = ApiErrorMetaAction(
+            title: "Ok", url: nil)
+        let actionUrl = ApiErrorMetaAction(
+            title: "Let me google for you...",
+            url: URL(string: "http://lmgtfy.com/?q=404"))
+        
+        let mockError = ApiErrorMeta(
+            code: 1001,
+            traceId: "somelongid",
+            title: "Opps...",
+            message: "The server is currently undergoing maintenance. Our engineers will are working around the clock to fix it A.S.A.P",
+            style: .custom,
             actions: [actionOk, actionUrl])
         return mockError
     }

@@ -4,7 +4,7 @@
 import UIKit
 
 extension UIAlertController {
-    static func controller(from error: ApiErrorMeta) -> UIAlertController {
+    fileprivate static func controller(from error: ApiErrorMeta) -> UIAlertController {
         let alertController = UIAlertController(
             title: error.title,
             message: error.message,
@@ -16,12 +16,14 @@ extension UIAlertController {
         let alert = UIAlertController.controller(from: error)
         error.actions.forEach({ alert.addAction(UIAlertAction.action(from: $0)) })
         
+        if alert.actions.isEmpty { alert.addAction(UIAlertAction.closeAction())}
+        
         presenter.present(alert, animated: true, completion: nil)
     }
 }
 
 extension UIAlertAction {
-    static func action(from error: ApiErrorMetaAction) -> UIAlertAction {
+    fileprivate static func action(from error: ApiErrorMetaAction) -> UIAlertAction {
         let action = UIAlertAction(
             title: error.title,
             style: .default) { _ in
@@ -29,6 +31,13 @@ extension UIAlertAction {
                     UIApplication.shared.open(url, options: [:])
                 }
         }
+        return action
+    }
+    
+    fileprivate static func closeAction() -> UIAlertAction {
+        let action = UIAlertAction(
+            title: "Close",
+            style: .default)
         return action
     }
 }
