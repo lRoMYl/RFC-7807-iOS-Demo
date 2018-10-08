@@ -75,7 +75,7 @@ E.g.
 
 ## Syncing platform action handling
 - [iOS] After tapping on any of the action in alert will automatically dismiss the alert, we might want to synchronize this behaviour between all platform
-- We do not have a list of possible deeplink from both Android and iOS mapping to their web counterpart centralization. It's all added on ad-hoc basis so it would be able hard for anyone to add a new URL without prior knowledge.
+- Based on my past experience, chances are high that Android and iOS doesn't have a centralized mapping with each other or their web counterpart. Recommended to centralized the Universal Link into a spec that can be reused by technical and non-technical users to add new action.
 
 ## URL targeting for different platform
 
